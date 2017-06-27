@@ -1,9 +1,9 @@
-var express = require('express');
-var cors = require('cors');
-var mongoose = require('mongoose');
-var bodyParser = require('body-parser');
+const express = require('express');
+const cors = require('cors');
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
 
-var app = express();
+const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 mongoose.connect('mongodb://localhost/snowball');
