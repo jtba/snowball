@@ -1,0 +1,105 @@
+<div class='row' ng-init="getCreditors()">
+  <div class='col-md-9'>
+    <div class="panel panel-success">
+      <div class="panel-heading">
+        <div class="panel-title">Creditor Management</div>
+      </div>
+      <div class="panel-body">
+        <table class='table table-responsive'>
+          <tbody>
+            <tr>
+              <td><input type="text" placeholder="Creditor" class="form-control" ng-model="newcreditor.name"/></td>
+              <td>
+                <div class="input-group">
+                  <div class="input-group-addon">$</div>
+                  <input type="number" class="form-control" placeholder="Balance" ng-model="newcreditor.balance">
+                </div>
+              </td>
+              <td>
+                <div class="input-group">
+                  <input type="number" class="form-control" placeholder="Rate" ng-model="newcreditor.rate">
+                  <div class="input-group-addon">%</div>
+                </div>                  
+              </td>
+              <td>
+                <div class="input-group">
+                  <div class="input-group-addon">$</div>
+                  <input type="number" class="form-control" placeholder="Amount" ng-model="newcreditor.payment">
+                </div>
+              </td>
+              <td>
+                <div class="input-group">
+                  <div class="input-group-addon">Priority</div>
+                  <input type="number" class="form-control" placeholder="#" ng-model="newcreditor.priority">
+                </div>
+              </td>
+              <td>
+                <div class="input-group">
+                  <div class="input-group-addon">URL</div>
+                  <input type="string" class="form-control" placeholder="#" ng-model="newcreditor.url">
+                </div>
+              </td>
+              <td>
+                <button class="btn btn-info btn-sm" ng-click="createCreditor(newcreditor)">Add</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <table datatable='ng' dt-options='dtOptions' dt-column-defs="dtColumns" class="table table-responsive table-striped table-condensed">
+          <thead>
+            <tr>
+              <th>Creditor</th><th>Balance</th><th>Rate</th><th>Payment</th><th>Priority (optional)</th><th>URL</th><th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="creditor in data_creditors track by $index">
+              <td editable-text="creditor.name" onbeforesave="updateCreditor(creditor.cid, $data, 'name')">{{creditor.name}}</td>
+              <td editable-text="creditor.balance" onbeforesave="updateCreditor(creditor.cid, $data, 'balance')">{{creditor.balance| currency}}</td>
+              <td editable-text="creditor.rate" onbeforesave="updateCreditor(creditor.cid, $data, 'rate')">{{creditor.rate| percentage}}</td>
+              <td editable-text="creditor.payment" onbeforesave="updateCreditor(creditor.cid, $data, 'payment')">{{creditor.payment| currency}}</td>
+              <td editable-text="creditor.priority" onbeforesave="updateCreditor(creditor.cid, $data, 'priority')">{{creditor.priority}}</td>
+              <td editable-text="creditor.url" onbeforesave="updateCreditor(creditor.cid, $data, 'url')">{{creditor.url}}</td>
+              <td>
+                <i class="glyphicon glyphicon-remove" style="cursor:pointer" ng-click="deleteCreditor($index)"></i>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <ul class="list-group">
+      <li class="list-group-item">Total Debt: {{summarydebt| currency}}</li>
+      <li class="list-group-item">Total Payments: {{summarypayments| currency}}</li>
+      <li class="list-group-item">Monthly Payment:</li>
+    </ul>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <div class="panel-title">Strategic View
+          <div class="pull-right">
+            <select ng-model="strategy" class="form-control">
+              <option value="priority">Priority</option>
+              <option value="balance">Balance</option>
+              <option value="interest">Interest</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="panel-body">
+        <table class="table table-condensed table-responsive table-striped">
+          <thead>
+            <tr><th>Creditors</th><th>Original Balance</th><th>Total Interest</th><th>Months to Payoff</th><th>Payoff Date</th></tr>
+          </thead>
+          <tbody>
+            <tr><td></td><td></td><td></td><td></td><td></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
