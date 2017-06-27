@@ -2,8 +2,8 @@
 
 Destroy your debt by leveraging the snowball method. This application was created to better track your debt as you pay them down and help you keep track of rolling payments towards your next smallest debt.  
 
-<img src="https://github.com/jtba/snowball/blob/master/docs/screenshot1.png" width="600">
-<img src="https://github.com/jtba/snowball/blob/master/docs/screenshot2.png" width="600">
+![screenshot](https://github.com/jtba/snowball/blob/master/docs/screenshot1.png)
+![screenshot](https://github.com/jtba/snowball/blob/master/docs/screenshot2.png)
 
 ## Getting Started
 
